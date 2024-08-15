@@ -13,6 +13,7 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
+    <p id="longlat">test</p>
     <a-scene
         vr-mode-ui="enabled: false"
 		embedded
@@ -23,4 +24,11 @@
 
         <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
+
+    <script>
+        let text = document.getElementById("longlat");
+        navigator.geolocation.watchPosition((pos) => {
+            text.innerHTML = "long: " + pos.coords.longitude + ", lat: " + pos.coords.latitude;
+        });
+    </script>
 </body>
