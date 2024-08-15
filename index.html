@@ -10,20 +10,45 @@
     <script>
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
     </script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #header {
+            position: fixed; /* Makes the header fixed on the screen */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a semi-transparent background */
+            color: white; /* Optional: Sets text color to white */
+            padding: 10px;
+            z-index: 1000; /* Ensures the header is above the AR scene */
+        }
+        #content {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Ensure it takes up full screen */
+        }
+    </style>
 </head>
 
-<body style='margin: 0; overflow: hidden;'>
-    <p id="longlat">test</p>
-    <a-scene
-        vr-mode-ui="enabled: false"
-		embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-        
-        <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 14.366531; latitude: 48.511927;"/>
-        <!-- <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 14.366524091891721; latitude: 48.51192276253768;"/> -->
-
-        <a-camera gps-camera rotation-reader></a-camera>
-	</a-scene>
+<body>
+    <div id="header">
+        <p id="longlat">test</p>
+    </div>
+    <div id="content">
+        <a-scene
+            vr-mode-ui="enabled: false"
+            embedded
+            arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: true;'>
+            
+            <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 14.366531; latitude: 48.511927;"/>
+            <!-- <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place="longitude: 14.366524091891721; latitude: 48.51192276253768;"/> -->
+    
+            <a-camera gps-camera rotation-reader></a-camera>
+        </a-scene>
+    </div>
 
     <script>
         let text = document.getElementById("longlat");
@@ -32,3 +57,4 @@
         });
     </script>
 </body>
+</html>
